@@ -1,0 +1,14 @@
+<!-- Rename dialog -->
+<!-- Title -->
+<h2 mat-dialog-title class="primary-font secondary-color title">Rename {{data.object}}</h2>
+<button class="primary-color button-close" mat-dialog-close><i class="fa-solid fa-xmark"></i></button>
+<!-- Content -->
+<mat-dialog-content>
+    <form [formGroup]="renameForm">
+        <input type="text" formControlName="name" class="secondary-font secondary-color">
+    </form>
+</mat-dialog-content>
+<!-- Actions -->
+<mat-dialog-actions align="end" class="actions">
+    <button class="button" [mat-dialog-close]="true" (click)="rename()" cdkFocusInitial>Rename</button>
+</mat-dialog-actions>

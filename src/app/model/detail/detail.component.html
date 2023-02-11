@@ -1,0 +1,15 @@
+<!-- Detail dialog -->
+<!-- Title -->
+<h2 mat-dialog-title class="primary-font secondary-color">Details</h2>
+<!-- Divider -->
+<mat-divider class="divider"></mat-divider>
+<!-- Content -->
+<mat-dialog-content *ngIf="details">
+    <p class="primary-color secondary-font"><b>Name:</b> {{data.name}}</p>
+    <p class="primary-color secondary-font"><b>Folder:</b> {{data.folder}}</p>
+    <p class="primary-color secondary-font"><b>Format:</b> .{{details.format}}</p>
+    <p class="primary-color secondary-font"><b>Created at:</b> {{details.created_at}}</p>
+    <p class="primary-color secondary-font"><b>Width:</b> {{details.width}} px</p>
+    <p class="primary-color secondary-font"><b>Height:</b> {{details.height}} px</p>
+    <p class="primary-color secondary-font"><b>Size:</b> {{details.bytes/1000}} KB</p>
+</mat-dialog-content>

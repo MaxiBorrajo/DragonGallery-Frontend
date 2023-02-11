@@ -1,0 +1,16 @@
+<!-- Navigation bar -->
+<nav class="navbar bg-third">
+    <!-- Logo -->
+    <a (click)="reload()" class="logo-container primary-font">
+        <img src="assets/logo-dragon-7.png" class="logo">
+        <p class="primary-color">DragonGallery</p>
+    </a>
+    <!-- Actions -->
+    <div class="actions">
+        <!-- Searcher -->
+        <input type="search" placeholder="Search" [formControl]="search" name="search"
+            class="secondary-color primary-font">
+        <!-- Login button -->
+        <button class="button bg-secondary third-color">Log In</button>
+    </div>
+</nav>

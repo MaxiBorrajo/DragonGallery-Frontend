@@ -1,0 +1,68 @@
+<!-- Main container -->
+<div class="container bg-fourth">
+    <!-- New Component -->
+    <app-new (uploadEvent)="getFilesByFolderName(activedFolder)" [activedFolder]="activedFolder"></app-new>
+    <!-- Select Dashboard -->
+    <div class="buttons bg-primary" *ngIf="selectDashboard">
+        <label for="select" class="secondary-font primary-color">Select all:</label>
+        <input type="checkbox" class="select" name="select" (click)="selectAll()">
+        <button class="button" (click)="deleteFiles()">Borrar</button>
+        <button class="button" [matMenuTriggerFor]="foldersOptions">Mover</button>
+        <button class="button" (click)="openDashboard()"><i class="fa-solid fa-xmark"></i></button>
+        <mat-menu #foldersOptions="matMenu">
+            <button mat-menu-item *ngFor="let folder of folders" (click)="moveFiles(folder.id)">
+                <i class="fa-solid fa-folder"></i>
+                {{folder.name}}
+            </button>
+        </mat-menu>
+    </div>
+    <!-- Gallery Dashboard -->
+    <div class="gallery-dashboard bg-primary">
+        <!-- List of folders and create new ones -->
+        <mat-list cdkDropList #Folders [cdkDropListData]="folders" (cdkDropListDropped)="drop($event)" class="folders">
+            <h3 class="folders__h3 primary-font primary-color">Folders</h3>
+            <mat-list-item>
+                <button matListItemTitle class="primary-color secondary-font newFolder" (click)="onNew()"><i
+                        class="fa-solid fa-folder-plus"></i> New folder</button>
+            </mat-list-item>
+            <div *ngIf="new" [formGroup]="folderForm" class="newField">
+                <input type="text" class="secondary-color secondary-font inputFolder" formControlName="name" />
+                <button type="submit" class="primary-color secondary-font upload-btn-folder"
+                    [disabled]="folderForm.get('name')?.value == ''"
+                    [ngClass]="{'isDisabled': folderForm.get('name')?.value == ''}"
+                    (click)="createNewFolder()">Create</button>
+            </div>
+            <mat-list-item *ngFor="let folder of folders" class="list-item"
+                [ngClass]="{'activedFolder':activedFolder==folder.name}" (click)="changeFolder(folder.name)" cdkDrag>
+                <p matListItemTitle class="primary-color secondary-font"><i class="fa-solid fa-folder"></i>
+                    {{folder.name}}</p>
+                <button class="options" [matMenuTriggerFor]="folderOptions"><i
+                        class="fa-solid fa-ellipsis-vertical"></i></button>
+                <mat-menu #folderOptions="matMenu">
+                    <button class="secondary-color secondary-font" mat-menu-item
+                        (click)="renameFolder(folder.id, activedFolder)"><i class="fa-solid fa-pen"></i> Rename</button>
+                    <button class="secondary-color secondary-font" mat-menu-item
+                        (click)="deleteFolder(folder.id, activedFolder)"><i class="fa-solid fa-trash-can"></i>
+                        Delete</button>
+                </mat-menu>
+            </mat-list-item>
+        </mat-list>
+        <!-- Gallery -->
+        <div class="gallery" cdkDropList #gallery [cdkDropListData]="files" (cdkDropListDropped)="drop($event)"
+            *ngIf="(files| filter:valueSearched) != 'No file/s found'; else noFiles">
+            <!-- File Component -->
+            <app-file
+                *ngFor="let file of files| filter:valueSearched | paginate: { itemsPerPage: 9, currentPage: p }; index as i"
+                [file]="file" [i]="i" [folders]="folders" [actualFolder]="activedFolder" [allSelected]="allSelected"
+                [selectDashboard]="selectDashboard" (updateEvent)="getFilesByFolderName(activedFolder)"
+                (openDashboardEvent)="openDashboard()" cdkDrag></app-file>
+            <!-- Paginator -->
+            <pagination-controls class="my-pagination" (pageChange)="p = $event" [autoHide]='true'
+                [responsive]='true'></pagination-controls>
+        </div>
+        <!-- No files template -->
+        <ng-template #noFiles>
+            <h1 class="primary-color secondary-font no-files-found">{{files| filter:valueSearched}} ...</h1>
+        </ng-template>
+    </div>
+</div>

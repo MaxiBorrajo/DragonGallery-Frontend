@@ -1,1 +1,138 @@
-/* You can add global styles to this file, and also import other style files */
+/*Imports*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@import '~swiper/css';
+@import '~swiper/css/navigation';
+@import '~swiper/css/pagination';
+
+/*Global styles for HTML Elements*/
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input {
+    max-width: 100%;
+    border: 3px solid #303036;
+    padding:5px;
+}
+
+input:focus,
+input[type]:focus {
+    border: 3px solid #6f5adc;
+    outline: 0 none;
+}
+
+/*Reusable classes*/
+.button {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    transition: 0.8s;
+    font-size: 15px;
+    font-weight: 700;
+    background: #6f5adc;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 5px;
+}
+
+.button:hover,
+.disabled {
+    background: rgba(111, 90, 220, 0.5);
+}
+
+.primary-font {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.secondary-font {
+    font-family: 'Nunito', sans-serif;
+}
+
+.bg-fourth {
+    background: #1e1a20
+}
+
+.bg-third {
+    background: #6f5adc;
+}
+
+.bg-secondary {
+    background: #fff;
+    ;
+}
+
+.bg-primary {
+    background: #272a2e;
+}
+
+.primary-color {
+    color: #fff;
+}
+
+.secondary-color {
+    color: #272a2e;
+}
+
+.third-color {
+    color: #6f5adc;
+}
+
+.fourth-color {
+    color: #1e1a20
+}
+
+.logo {
+    width: 28px;
+    height: auto;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #6f5adc;
+}
+
+.swiper-pagination-bullet-active {
+    background: #6f5adc;
+}
+
+.options {
+    border: none;
+    outline: none;
+    background: none;
+    transition: 0.5s;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.select {
+    width: 20px;
+    height: 20px;
+}
+
+.select:checked{
+    accent-color: #6f5adc;
+}

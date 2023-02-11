@@ -1,0 +1,240 @@
+.container {
+    width: 100%;
+    height: auto;
+    padding: 30px 50px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 50px;
+}
+
+.gallery {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-template-rows: auto;
+    column-gap: 2%;
+    padding: 10px 10px 30px 10px;
+    height: auto;
+    row-gap: 2%;
+}
+
+.gallery-dashboard {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    row-gap: 3%;
+    height: auto;
+}
+
+.folders {
+    padding: 0 0 0 10px;
+}
+
+.newFolder {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+.newField {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin: 0 0 10px 0;
+}
+
+.folders__h3 {
+    padding: 15px;
+}
+
+.list-item {
+    position: relative;
+}
+
+.list-item:hover,
+.activedFolder {
+    background: #6f5adc;
+}
+
+.list-item:hover p,
+.activedFolder p,
+.list-item:hover .options,
+.activedFolder .options {
+    color: #fff !important;
+}
+
+.options {
+    position: absolute;
+    color: #fff;
+    top: 30%;
+    right: 10%;
+    transition: 0s;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    min-width: 40%;
+    max-width: 40%;
+    padding: 20px;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #6f5adc;
+}
+
+.my-pagination ::ng-deep .ngx-pagination {
+    color: #fff !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a,
+.my-pagination ::ng-deep .ngx-pagination button {
+    color: #fff !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a:hover,
+.my-pagination ::ng-deep .ngx-pagination button:hover {
+    background: #6f5adc !important;
+}
+
+.my-pagination {
+    grid-column: 1/4;
+    text-align: center;
+    padding: 10px 0 20px 0;
+    color: #fff !important;
+}
+
+.my-pagination ::ng-deep .pagination-previous,
+.my-pagination ::ng-deep .pagination-next {
+    background: none;
+    color: #fff !important;
+    font-family: 'Nunito', sans-serif;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .pagination-previous:hover .ng-star-inserted,
+.my-pagination ::ng-deep .ngx-pagination .pagination-next:hover .ng-star-inserted {
+    background: #6f5adc !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .pagination-previous.disabled:hover .ng-star-inserted,
+.my-pagination ::ng-deep .ngx-pagination .pagination-next.disabled:hover .ng-star-inserted {
+    background: none !important;
+}
+
+.my-pagination ::ng-deep .ng-star-inserted .pagination-previous.disabled,
+.my-pagination ::ng-deep .ng-star-inserted .pagination-next.disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.newField {
+    padding: 0 16px;
+}
+
+.upload-btn-folder {
+    min-width: 50%;
+    max-width: 70%;
+    background: #6f5adc;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+.upload-btn-folder:hover,
+.isDisabled {
+    background: rgba(111, 90, 220, 0.5);
+    ;
+}
+
+.no-files-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 490px) and (max-width: 914px) {
+
+    .gallery-dashboard {
+        grid-template-columns: 19% 79%;
+    }
+
+    .gallery {
+        grid-template-columns: 50% 50%;
+        row-gap: 0.8%;
+    }
+
+    .my-pagination {
+        grid-column: 1/3;
+    }
+
+    .upload-btn-folder {
+        width: 70%;
+    }
+
+    .buttons {
+        min-width: 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 490px) and (max-width: 706px) {
+
+    .gallery-dashboard {
+        grid-template-columns: 24% 74%;
+    }
+
+    .gallery {
+        grid-template-columns: 50% 50%;
+    }
+
+    .upload-btn-folder {
+        width: 70%;
+    }
+
+    .buttons {
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 490px) and (max-width: 580px) {
+
+    .gallery-dashboard {
+        grid-template-columns: 30% 70%;
+    }
+
+    .gallery {
+        grid-template-columns: 100%;
+        column-gap: 0;
+        row-gap: 0.27%;
+    }
+
+    .container {
+        row-gap: 10px;
+    }
+
+    .newFolder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .my-pagination {
+        grid-column: 1/2;
+    }
+
+    .upload-btn-folder {
+        width: 60%;
+    }
+
+    .buttons {
+        min-width: 70%;
+        max-width: 70%;
+    }
+}

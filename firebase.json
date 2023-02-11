@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/dragon-gallery",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

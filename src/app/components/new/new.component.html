@@ -1,0 +1,59 @@
+<!-- Uploading spinner -->
+<ngx-spinner bdColor="rgba(48, 48, 54, 0.5)" size="medium" color="#6f5adc" type="ball-scale-multiple"
+    name="upload-spinner">
+    <p class="spinner secondary-font primary-color">Uploading...</p>
+</ngx-spinner>
+<!-- Upload form -->
+<form (ngSubmit)="onUpload()" enctype="multipart/form-data" novalidate class="new"
+    [ngClass]="{'no-images':(images.length <= 0 && videos.length <= 0)}">
+    <!-- Drag and drop -->
+    <div class="dragger bg-primary" (dragover)="allowDrop($event)" (drop)="droppedImage($event)"
+        [ngClass]="{'col13':(images.length <= 0 && videos.length <= 0)}">
+        <div class="icon primary-color"><i class="fa-regular fa-images"></i></div>
+        <h2 class="primary-color primary-font">Drag and drop file</h2>
+        <h3 class="primary-color secondary-font">OR</h3>
+        <button type="button" class="primary-color primary-font btn-browse" (click)="inputHandler()">Browse
+            File</button>
+        <input type="file" name="images" (change)="selectFile($event)"
+            accept="image/jpg, image/png, image/jpeg, video/mp4" placeholder="Add image"
+            multiple #inputfile hidden>
+        <button type="submit" class="button" [disabled]="(!selectedImages && !selectedVideos) || (selectedImages.length <= 0 
+        && selectedVideos.length <= 0)" [ngClass]="{'disabled':(!selectedImages && !selectedVideos) || (selectedImages.length <= 0 
+            && selectedVideos.length <= 0)}"><i class="fa-solid fa-upload"></i></button>
+    </div>
+    <!-- Previsualizer -->
+    <div *ngIf="(images.length > 0 || videos.length > 0)" class="preview-dashboard">
+        <!-- Previsualizer actions -->
+        <div class="preview-dashboard__actions">
+            <h5 class="primary-color primary-font preview-dashboard__h5">Preview:</h5>
+            <button class="button" (click)="totalReset()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+        </div>
+        <!-- Preview of images or videos -->
+        <div class="preview">
+            <!-- Preview of images -->
+            <div class="img--thumbnail" *ngFor="let img of previewImages(); index as i">
+                <img [src]="img.src | safeURL" class="img--thumbnail">
+                <button class="icon-remove-image third-color" (click)="unSelectFile(i, 'image')"><i
+                        class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="extra primary-color primary-font" *ngIf="images.length > 4 && videos.length > 0">
+                +{{images.length - 3}}</div>
+            <div class="extra primary-color primary-font" *ngIf="images.length > 8 && videos.length == 0">
+                +{{images.length - 7}}</div>
+            <!-- Preview of videos -->
+            <div class="img--thumbnail" *ngFor="let videos of previewVideos(); index as i">
+                <video class="bg-video img--thumbnail" autoplay [muted]="true" loop>
+                    <source [src]="videos | safeURL" type="video/mp4">
+                </video>
+                <button class="icon-remove-image third-color" (click)="unSelectFile(i, 'video')"><i
+                        class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="extra primary-color primary-font" *ngIf="videos.length > 4 && images.length > 0">
+                +{{videos.length - 3}}</div>
+            <div class="extra primary-color primary-font" *ngIf="videos.length > 8 && images.length == 0">
+                +{{videos.length - 7}}</div>
+        </div>
+    </div>
+</form>

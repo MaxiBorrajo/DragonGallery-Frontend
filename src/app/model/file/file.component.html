@@ -1,0 +1,58 @@
+<!-- Deleting spinner -->
+<ngx-spinner bdColor="rgba(48, 48, 54, 0.1)" size="medium" color="#6f5adc" type="ball-scale-multiple"
+    name="delete-spinner">
+    <p class="spinner secondary-font primary-color">Deleting...</p>
+</ngx-spinner>
+<!-- Card -->
+<div class="card primary-color bg-primary">
+    <!-- Select checkbox -->
+    <input type="checkbox" name="select" class="select" 
+    *ngIf="selectDashboard" [checked]="allSelected" #checkbox>
+    <!-- Image container -->
+    <div class="img-container" [style]="{'background-image': 'url(' + file.url + ')'}" (click)="openPreview()" *ngIf="file.format == 'image'">
+    </div>
+    <!-- Video container -->
+    <div class="video-container" (click)="openPreview()" *ngIf="file.format == 'video'">
+        <video class="bg-video" autoplay [muted]="true" loop>
+            <source [src]="file.url | safeURL" type="video/mp4">
+        </video>
+    </div>
+    <!-- Card title -->
+    <div class="title primary-font bg-third">
+        <h1 class="title__h1">{{file.name | shorter}}</h1>
+        <!-- Option buttons -->
+        <button class="options" [matMenuTriggerFor]="folderOptions"><i
+                class="fa-solid fa-ellipsis-vertical"></i></button>
+        <!-- Options -->
+        <mat-menu #folderOptions="matMenu">
+            <button class="secondary-font" mat-menu-item (click)="renameFile(file.id, file.name)">
+                <i class="fa-solid fa-pen"></i> Rename
+            </button>
+            <button class="secondary-font" mat-menu-item (click)="openSelectPanel()">
+                <i class="fa-regular fa-square-check"></i> Select
+            </button>
+            <button class="secondary-font" mat-menu-item [matMenuTriggerFor]="foldersOptions">
+                <i class="fa-solid fa-folder-open"></i> Move
+            </button>
+            <button mat-menu-item>
+                <a class="secondary-font" id="download"
+                 (click)="downloadFile(file.url, file.name)" [download]="file.name">
+                 <i class="fa-solid fa-download"></i> Download
+                </a>
+            </button>
+            <button class="secondary-font" mat-menu-item (click)="openDetail(file.id, file.carpeta.name, file.name)">
+                <i class="fa-solid fa-circle-info"></i> Details
+            </button>
+            <button class="secondary-font" mat-menu-item (click)="deleteFile(file.id, file.name)">
+                <i class="fa-solid fa-trash-can"></i> Delete
+            </button>
+        </mat-menu>
+        <!-- Folder options -->
+        <mat-menu #foldersOptions="matMenu">
+            <p class="secondary-font" mat-menu-item>Folder: {{file.carpeta.name}}</p>
+            <button mat-menu-item *ngFor="let folder of folders" (click)="move(folder.id, file)"><i
+                    class="fa-solid fa-folder"></i>
+                {{folder.name}}</button>
+        </mat-menu>
+    </div>
+</div>

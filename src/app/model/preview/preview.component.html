@@ -1,0 +1,10 @@
+<!-- Slider -->
+<swiper [slidesPerView]="1" [spaceBetween]="10" [navigation]="true" [pagination]="{ clickable: true }"
+[initialSlide]="data.start">
+    <ng-template swiperSlide *ngFor="let file of files">
+        <img [src]="file.url | safeURL" class="file" *ngIf="file.format == 'image'">
+        <video class="video" autoplay [muted]="true" loop *ngIf="file.format == 'video'">
+            <source [src]="file.url | safeURL" type="video/mp4">
+        </video>
+    </ng-template>
+</swiper>
