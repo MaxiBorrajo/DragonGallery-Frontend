@@ -27,7 +27,6 @@ export class DetailComponent {
     this.fileService.getDetails(id).subscribe(
       resp => {
         this.details = resp;
-        console.log(this.details)
       }
     )
   }

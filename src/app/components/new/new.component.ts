@@ -151,12 +151,13 @@ export class NewComponent {
     const validVideoFileExtensions = ['video/mp4'];
     for (let file of files) {
       if (validImageFileExtensions.includes(file.type)) {
+        this.selectedImages.push(file);
         var i = new Image();
         i.src = URL.createObjectURL(file);
         this.images.push(i);
       } else if (validVideoFileExtensions.includes(file.type)) {
+        this.selectedVideos.push(file);
         this.videos.push(URL.createObjectURL(file));
-        console.log(this.videos.length)
       }
     }
   }
