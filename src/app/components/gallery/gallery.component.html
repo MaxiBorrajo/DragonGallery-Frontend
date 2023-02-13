@@ -42,7 +42,7 @@
                     <button class="secondary-color secondary-font" mat-menu-item
                         (click)="renameFolder(folder.id, activedFolder)"><i class="fa-solid fa-pen"></i> Rename</button>
                     <button class="secondary-color secondary-font" mat-menu-item
-                        (click)="deleteFolder(folder.id, activedFolder)"><i class="fa-solid fa-trash-can"></i>
+                        (click)="deleteFolder(folder.id, activedFolder)" *ngIf="folder.name != 'allPhotos'" ><i class="fa-solid fa-trash-can"></i>
                         Delete</button>
                 </mat-menu>
             </mat-list-item>

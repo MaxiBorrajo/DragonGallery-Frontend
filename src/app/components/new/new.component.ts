@@ -149,7 +149,7 @@ export class NewComponent {
     }
     const validImageFileExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
     const validVideoFileExtensions = ['video/mp4'];
-    for (let file of event.target.files) {
+    for (let file of files) {
       if (validImageFileExtensions.includes(file.type)) {
         var i = new Image();
         i.src = URL.createObjectURL(file);

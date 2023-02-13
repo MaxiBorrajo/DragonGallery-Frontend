@@ -52,7 +52,7 @@ export class GalleryComponent {
           this._snackBar.open("Delete Succesful", "Ok", {
             duration: 3000
           });
-          this.getFiles();
+          this.getFolders();
           this.activedFolder = "allPhotos";
           this.getFilesByFolderName(this.activedFolder);
         } else if (resp == "file-delete") {
@@ -62,7 +62,7 @@ export class GalleryComponent {
           });
           this.getFilesByFolderName(this.activedFolder);
         } else if (resp == "folder-rename") {
-          this.getFiles();
+          this.getFolders();
         } else if (resp == "file-rename") {
           this.getFilesByFolderName(this.activedFolder);
         }
@@ -110,7 +110,6 @@ export class GalleryComponent {
     this.folderService.saveFolder(this.folderForm.value).subscribe(data => {
       console.log(data);
       this.getFolders();
-      this.folderForm.reset();
       this.onNew();
     })
   }
